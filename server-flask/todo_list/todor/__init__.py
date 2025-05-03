@@ -1,8 +1,11 @@
 from flask import Flask
+from flask-cors import CORS
+
 
 def create_app():
 
     app = Flask(__name__)
+    CORS(app) #enable CORS on all routes
 
     #Cofiguración del Proyecto
     app.config.from_mapping(
@@ -21,4 +24,10 @@ def create_app():
     def index():
         return 'Hola Mundo'
     
+    @app.route('/api/users')
+    def get_users():
+            return {
+                 'users': ['a', 'b', 'c']
+            }
+
     return app
